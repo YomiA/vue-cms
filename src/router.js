@@ -12,6 +12,7 @@ import search from './components/tabbar/searchContent.vue'
 // 创建路由对象
 var router = new VueRouter({
     routes:[ // 配置路由规则
+        { path:'/',redirect:'/home' }, // 路由重定向，默认进入首页
         { path:'/home',component:home },
         { path:'/member',component:member },
         { path:'/shopcart',component:shopcart },
