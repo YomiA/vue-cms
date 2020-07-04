@@ -9,6 +9,8 @@ import shopcart from './components/tabbar/shopcartContent.vue'
 
 import search from './components/tabbar/searchContent.vue'
 
+import NewList from './components/newlist/NewList.vue'
+
 // 创建路由对象
 var router = new VueRouter({
     routes:[ // 配置路由规则
@@ -17,6 +19,7 @@ var router = new VueRouter({
         { path:'/member',component:member },
         { path:'/shopcart',component:shopcart },
         { path:'/search',component:search },
+        { path:'/home/newlist',component:NewList }
     ],
     linkActiveClass:'mui-active' // 覆盖默认的的路由高亮的类，默认的类是router-link-active
 })
