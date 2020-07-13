@@ -194,6 +194,7 @@
 
     .photo-list li img {
         vertical-align: middle;
+        width: 100%;
     }
 
     .photo-list li img[lazy=loading] {
