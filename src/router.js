@@ -11,6 +11,12 @@ import search from './components/tabbar/searchContent.vue'
 
 import NewList from './components/newlist/NewList.vue'
 
+import NewsInfo from './components/newlist/NewsInfo.vue'
+
+import photolist from './components/photos/photolist.vue'
+
+import PhotoInfo from './components/photos/PhotoInfo.vue'
+
 // 创建路由对象
 var router = new VueRouter({
     routes:[ // 配置路由规则
@@ -19,7 +25,10 @@ var router = new VueRouter({
         { path:'/member',component:member },
         { path:'/shopcart',component:shopcart },
         { path:'/search',component:search },
-        { path:'/home/newlist',component:NewList }
+        { path:'/home/newlist',component:NewList },
+        { path:'/home/NewsInfo/:id:content:freque:date',component:NewsInfo },
+        { path:'/home/photolist',component:photolist },
+        { path:'/home/photoinfo/:id',component:PhotoInfo }
     ],
     linkActiveClass:'mui-active' // 覆盖默认的的路由高亮的类，默认的类是router-link-active
 })

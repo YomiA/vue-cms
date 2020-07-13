@@ -13,15 +13,15 @@
                     <div class="mui-media-body">新闻资讯</div>
                 </router-link></li>
             <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-                <a href="#">
+                <router-link to="/home/photolist">
                     <img src="../../images/menu2.png"/>
                     <div class="mui-media-body">图片分享</div>
-                </a></li>
+                </router-link></li>
             <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-                <a href="#">
+                <router-link to="/home/goodslist">
                     <img src="../../images/menu3.png"/>
                     <div class="mui-media-body">商品购买</div>
-                </a></li>
+                </router-link></li>
             <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
                 <a href="#">
                     <img src="../../images/menu4.png"/>
@@ -64,8 +64,8 @@
         },
 
         methods: {
-            // getLunbotu(){ // 获取轮播图数据的方法
-            //     this.$http.get('http://vue.studyit.io/api/getLunbo').then(result => {
+            // getLunbotu(){ // 获取轮播图数据的方法  vue-resource 的 url 的前面是不能加斜杠的
+            //     this.$http.get('api/getLunbo').then(result => {
             //         // console.log(result.body)
             //         if (result.body.status === 0){
             //             // 获取数据成功
