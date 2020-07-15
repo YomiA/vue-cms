@@ -19,6 +19,12 @@ import PhotoInfo from './components/photos/PhotoInfo.vue'
 
 import GoodsList from './components/goods/GoodsList.vue'
 
+import GoodsInfo from './components/goods/GoodsInfo.vue'
+
+import GoodsDesc from './components/goods/GoodsDesc.vue'
+
+import GoodsComment from './components/goods/GoodsComment.vue'
+
 // 创建路由对象
 var router = new VueRouter({
     routes:[ // 配置路由规则
@@ -28,10 +34,13 @@ var router = new VueRouter({
         { path:'/shopcart',component:shopcart },
         { path:'/search',component:search },
         { path:'/home/newlist',component:NewList },
-        { path:'/home/NewsInfo/:id:content:freque:date',component:NewsInfo },
+        { path:'/home/NewsInfo/:id',component:NewsInfo },
         { path:'/home/photolist',component:photolist },
         { path:'/home/photoinfo/:id',component:PhotoInfo },
-        { path:'/home/goodslist',component:GoodsList }
+        { path:'/home/goodslist',component:GoodsList },
+        { path:'/home/goodsinfo/:id',component:GoodsInfo, name:"goodsinfo"},
+        { path:'/home/goodsdesc/:id',component:GoodsDesc, name: "goodsDesc" },
+        { path:'/home/goodscomment/:id',component:GoodsComment,name:"goodsComment" }
     ],
     linkActiveClass:'mui-active' // 覆盖默认的的路由高亮的类，默认的类是router-link-active
 })

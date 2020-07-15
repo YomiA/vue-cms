@@ -2,7 +2,11 @@
     <!--    这个是根组件-->
     <div class="app-container">
         <!--        头部 Header 部分-->
-        <mt-header fixed title="我的第一个 Vue 项目"></mt-header>
+        <mt-header fixed title="我的第一个 Vue 项目">
+            <router-link to="/" slot="left">
+                <mt-button icon="back" @click="goBack">返回</mt-button>
+            </router-link>
+        </mt-header>
 
         <!--        中间路由 router-view 部分-->
         <transition>
@@ -32,7 +36,16 @@
 </template>
 
 <script>
-
+    export default {
+        data(){
+            return{}
+        },
+        methods:{
+            goBack(){
+                this.$router.go(-1);
+            }
+        }
+    }
 </script>
 
 <style scoped>

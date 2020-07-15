@@ -1,11 +1,9 @@
 <template>
     <div>
-        <mt-swipe :auto="4000">
-            <!--            在组件中，使用v-for循环的话，一定要使用 key -->
-            <mt-swipe-item v-for="item in lunbotuList" :key="item.id">
-                <a :href="item.url" target="_blank"><img :src="item.img"/></a>
-            </mt-swipe-item>
-        </mt-swipe>
+<!--        轮播图区域-->
+<!--        给他一个属性值 isfull 来设置是否为 100% 宽度，如果为 true 则为 100%，佛则自适应-->
+        <swp-img :lunbotuList="lunbotuList" :isfull="true"></swp-img>
+
         <ul class="mui-table-view mui-grid-view mui-grid-9">
             <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
                 <router-link to="/home/newlist">
@@ -46,6 +44,8 @@
     import {Toast} from 'mint-ui'
     // Vue.comment(Toast.name,Toast) mint-ui 导入 js 组件 不需要这个
 
+    import swipe from '../subcomponents/swipe.vue'
+
     export default {
         data() {
             return {
@@ -77,32 +77,14 @@
             //         }
             //     })
             // }
+        },
+        components:{
+            "swp-img":swipe
         }
     }
 </script>
 
 <style lang="scss" scoped>
-    .mint-swipe {
-        height: 300px;
-
-    .mint-swipe-item:nth-child(1) {
-        background-color: cyan;
-    }
-
-    .mint-swipe-item:nth-child(2) {
-        background-color: yellow;
-    }
-
-    .mint-swipe-item:nth-child(3) {
-        background-color: blue;
-    }
-
-    .mint-swipe-item img {
-        width: 100%;
-        height: 100%;
-    }
-
-    }
 
     .mui-grid-view.mui-grid-9 {
         background-color: white;

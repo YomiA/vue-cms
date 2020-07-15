@@ -17,7 +17,7 @@
             </div>
         </div>
 
-        <mt-button type="danger" size="large" plain>加载更多</mt-button>
+        <mt-button type="danger" size="large" plain @click="getMore">加载更多</mt-button>
     </div>
 </template>
 
@@ -32,6 +32,24 @@
                 // comments: [], // 所有的评论数据
                 msg: '', // 评论输入的内容
                 commentContent: [
+                    {user: "小明", date: new Date(), content: "湖北黄梅近500名高考生因暴雨被困"},
+                    {user: "真相奔跑吧", date: new Date(), content: "花泽香菜官宣与小野贤章结婚"},
+                    {user: "小刚", date: new Date(), content: ""},
+                    {user: "新浪娱乐", date: new Date(), content: "李荣浩回应新歌歌词九个字"},
+                    {user: "QQ消息", date: new Date(), content: "爷爷奶奶花百万给孙女补课"},
+                    {user: "北京日报客户端", date: new Date(), content: "2020年版第五套人民币5元纸币将发行"},
+                    {user: "北京日报客户端", date: new Date(), content: ""}
+                ],
+                commentContent2: [
+                    {user: "小明", date: new Date(), content: "湖北黄梅近500名高考生因暴雨被困"},
+                    {user: "真相奔跑吧", date: new Date(), content: "花泽香菜官宣与小野贤章结婚"},
+                    {user: "小刚", date: new Date(), content: ""},
+                    {user: "新浪娱乐", date: new Date(), content: "李荣浩回应新歌歌词九个字"},
+                    {user: "QQ消息", date: new Date(), content: "爷爷奶奶花百万给孙女补课"},
+                    {user: "北京日报客户端", date: new Date(), content: "2020年版第五套人民币5元纸币将发行"},
+                    {user: "北京日报客户端", date: new Date(), content: ""}
+                ],
+                commentContent3: [
                     {user: "小明", date: new Date(), content: "湖北黄梅近500名高考生因暴雨被困"},
                     {user: "真相奔跑吧", date: new Date(), content: "花泽香菜官宣与小野贤章结婚"},
                     {user: "小刚", date: new Date(), content: ""},
@@ -98,6 +116,9 @@
                     this.msg = "";
                 }
 
+            },
+            getMore(){
+                this.commentContent = this.commentContent.concat(this.commentContent2).concat(this.commentContent3)
             }
         },
         // props: ["id"]
