@@ -4,7 +4,7 @@
         <!--        头部 Header 部分-->
         <mt-header fixed title="我的第一个 Vue 项目">
             <router-link to="/" slot="left">
-                <mt-button icon="back" @click="goBack">返回</mt-button>
+                <mt-button icon="back" @click="goBack" v-show="flag">返回</mt-button>
             </router-link>
         </mt-header>
 
@@ -24,7 +24,7 @@
                 <span class="mui-tab-label">会员</span>
             </router-link>
             <router-link class="mui-tab-item" to="/shopcart">
-                <span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge" id="badge">0</span></span>
+                <span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge" id="badge">{{ $store.getters.getAllCount }}</span></span>
                 <span class="mui-tab-label">购物车</span>
             </router-link>
             <router-link class="mui-tab-item" to="/search">
@@ -38,17 +38,41 @@
 <script>
     export default {
         data(){
-            return{}
+            return{
+                flag:false
+            }
         },
+        
+        created(){
+          if (this.$route.path === '/home'){
+              this.flag=false
+          }   else{
+              this.flag=true
+          }
+        },
+        
         methods:{
             goBack(){
                 this.$router.go(-1);
+            }
+        },
+        watch:{
+            "$route.path":function (newVal) {
+                if (newVal === '/home'){
+                    this.flag=false
+                } else {
+                    this.flag=true
+                }
             }
         }
     }
 </script>
 
 <style scoped>
+
+    .mui-tab-item{
+        touch-action: none;
+    }
 
     .mint-header{
         z-index: 99;
@@ -75,5 +99,7 @@
     .v-leave-active{
         transition: all 0.5s ease;
     }
+
+
 
 </style>

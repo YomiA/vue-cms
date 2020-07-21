@@ -280,4 +280,64 @@
                5. 我们可以使用 watch 属性监听来监听父组件传递过来的 maxNum 值，不管 watch 会被触发几次，但是最后一次肯定是一个
                   合法的 max 数值
 
+21 用 vuex 来操作购物车
+
+    21.1 首先要安装 vuex 使用代码 npm i vuex -S
+
+    21.2 安装完之后要注册 vuex 使用代码
+
+         import Vuex from 'vuex'
+         Vue.use(Vuex)
+
+    21.3 注册结束，要创建一个 store duix
+
+         var store = new Vuex.Store({
+            state:{},获取state数据方法：this.$store.state.****
+            mutations:{},获取store数据方法：this.$store.commit('方法的名称','按需传递唯一的参数')
+            getters:{} 获取getters数据方法：this.$store.getters.****
+         })
+
+    21.4 创建完 store 对象之后，要再 vue 实例中挂载上 store 对象
+         在 vue 实例中 store:store 进行 挂载 store 状态管理对象
+
+    21.5 这样的话，只要把数据存放到 store 中，那么之后在任意组件中想要用这个数据，所以可以去 vuex 中取出来
+
+    21.6 接下去继续购物车的改造
+
+         21.6.1 先创建一个数组，将购物车中的商品的数据，用一个数组存储起来，在 cart 数组中，存储一些商品的对象，咱们可以暂时将这个商品对象设计成这样
+                {id:商品的id, count:要购买的数量,price:商品的价格,selected:false[是否选中]}
+
+         21.6.2 点击加入购物车按钮，把商品信息保存到 store 中的 cart 上去
+
+         21.6.3 分析：
+                a. 如果购物车中，之前就已经有这个对于的商品了，那么，只需要更新数量就行了
+                   这是购物车中本来就有这个商品的情况下，然后再去数组 cart 中去找，但是不是遍历，不是每个都去查一遍，而是找到
+                   就停止了，所以这里要用的是 some 而不是forEach，找到之后，把他数量更新下就好
+
+                b. 如果没有，就直接把商品数据 cartinfo 给 push 到 cart 数组中去
+
+                c. 点击加入购物车按钮，调用 store 中的 mutations 来将商品加入购物车，我们可以去Vue调试工具中的 vuex 中查看到数据的变化
+
+         21.6.4 底部购物车徽标跟着加入购物车的数量改变而改变(store 的 getters 属性)
+                定义一个方法，然后遍历 state 的数组 cart 中的每一项(forEach)，找到对应的数量，然后把全部数量加起来的总数，给设置到
+                徽标所在的位置{{ $store.getters.getAllCount }} 即可
+
+         21.6.5 以上的做法，你如果重新刷新页面的话，你会发现购物车的徽标上的数量被清零，而正常情况下，应该是会保存着原本的数量的，所以这里
+                要用到本地存储的方法，把这个数量给存到本地中去(localstorage)
+                每次更新 cart 数组的时候，就要把 cart 数组存储到本地的 localStorage 中
+                localStorage.setItem('car',JSON.stringify(state.cart))
+                每次刚刚进入网页的时候，就要去 localStorage 中读取出来 cart 数组，如果为空，那么就是一个空数组
+                var cart = JSON.parse(localStorage.getItem('car') || "[]")
+                然后把 cart 数组 放到 store 中的 cart中去
+
+    21.7 绘制购物车列表的页面
+
+         21.7.1 购物车列表的 numberbox 中的数据没改，正常应该是商品详情页那边多少件，这边就应该是多少件，但是没有，而且服务器数据也没，
+                但是之前我们在保存本地数据的时候，有把件数的数量一起传上去，也就是说购物车的数量，应该是从本地存储来获取的
+                解决办法：我们可以先创建一个空对象，然后循环购物车中所有商品的本地数据，然后把当前循环的这条商品的 ID，作为对象的属性名
+                count 作为作为对象的属性值，这样，当把所有的商品都循环一遍，就会得到一个对象，比如这样的：{88:5,89:3,90:2},最后再从
+                $store.getter.方法名(item.id) 中获取到对应的 id 中的 count 值，再把 count 值直接传给子组件 numberbox 中，然后
+                属性绑定到 对应的 文本框中 :value="传过来的值"
+
+         21.7.2 微调购物车列表的值之后，又要把它存储到 store 中去
 
